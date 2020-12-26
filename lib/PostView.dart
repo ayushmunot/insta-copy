@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class PostView extends StatefulWidget {
   @override
@@ -6,5 +7,12 @@ class PostView extends StatefulWidget {
 }
 
 class PostViewState extends State<PostView> {
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(child: null,
+    navigationBar: Cupertino,);
+  }
   
 }
+
