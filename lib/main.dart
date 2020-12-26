@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instacopy/LoginForm.dart';
+import 'package:instacopy/PostView.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: "Instacopy",
-      home: LoginForm(),
+      home: Navigator(
+          onPopPage: (route, result) {
+            if (!route.didPop(result)) {
+              return false;
+            }
+            return true;
+          },
+          pages: [
+            CupertinoPage(key: ValueKey("LoginForm"), child: LoginForm()),
+            // CupertinoPage(key: ValueKey("PostView"), child: PostView())
+          ]),
     );
   }
 }
