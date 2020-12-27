@@ -11,20 +11,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      title: "Instacopy",
-      home: Navigator(
-          onPopPage: (route, result) {
-            if (!route.didPop(result)) {
-              return false;
-            }
-            return true;
-          },
-          pages: [
-            CupertinoPage(key: ValueKey("LoginForm"), child: LoginForm()),
-            // CupertinoPage(key: ValueKey("PostView"), child: PostView())
-          ]),
-    );
+    return CupertinoApp(routes: {
+      "/": (context) => LoginForm(),
+      "/postView": (context) => PostView()
+    }, title: "Instacopy");
   }
 }
 

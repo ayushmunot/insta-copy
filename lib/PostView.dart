@@ -7,17 +7,6 @@ class PostView extends StatefulWidget {
 }
 
 class PostViewState extends State<PostView> {
-<<<<<<< HEAD
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(child: null,
-    navigationBar: Cupertino,);
-  }
-  
-}
-
-=======
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -29,4 +18,3 @@ class PostViewState extends State<PostView> {
         child: Center(child: Text("Hello world!")));
   }
 }
->>>>>>> a405f6cd8e0226af7c12faf1b716e37fa4e4dbee
