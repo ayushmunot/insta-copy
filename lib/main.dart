@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(routes: {
-      "/": (context) => LoginForm(),
+      "/": (context) => PostView(),
       "/postView": (context) => PostView(),
       "/profileView": (context) => ProfileView()
     }, title: "Instacopy");

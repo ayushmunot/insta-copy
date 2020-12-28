@@ -9,12 +9,48 @@ class PostView extends StatefulWidget {
 class PostViewState extends State<PostView> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          // border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
+      child: Container(
+        // alignment: ,
+        color: Colors.black,
+      ),
+      navigationBar: CupertinoNavigationBar(
           backgroundColor: Colors.black,
-        ),
-        child: Center(child: Text("Hello world!")));
+          leading: Image(
+            image: AssetImage('assets/insta_logo(1).png'),
+            width: MediaQuery.of(context).size.width * 0.45,
+            // fit: BoxFit.fitWidth,
+            height: 20,
+          ),
+          trailing: Container(
+              // alignment: Alignment.centerRight,
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  Icons.add_box_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: () => print("add post"),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child: Icon(Icons.favorite_border_rounded, color: Colors.white),
+                onPressed: () => print("activity"),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  CupertinoIcons.text_bubble,
+                  color: Colors.white,
+                ),
+                onPressed: () => print("message"),
+              )
+            ],
+          ))),
+    );
   }
 }
