@@ -105,7 +105,7 @@ class LoginFormState extends State<LoginForm> {
                             child: CupertinoButton(
                               color: Colors.blue[400],
                               onPressed: () {
-                                Navigator.pushNamed(context, "/postView");
+                                Navigator.pushNamed(context, "/profileView");
                                 // print("hello");
                               },
                               child: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instacopy/LoginForm.dart';
 import 'package:instacopy/PostView.dart';
+import 'package:instacopy/ProfileView.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(routes: {
       "/": (context) => LoginForm(),
-      "/postView": (context) => PostView()
+      "/postView": (context) => PostView(),
+      "/profileView": (context) => ProfileView()
     }, title: "Instacopy");
   }
 }
