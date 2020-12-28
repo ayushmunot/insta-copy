@@ -15,6 +15,7 @@ class LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     return CupertinoPageScaffold(
+        resizeToAvoidBottomInset: false,
         navigationBar: CupertinoNavigationBar(
           // border: Border(bottom: BorderSide(color: Colors.grey, width: 0.5)),
           backgroundColor: Colors.black,
@@ -55,7 +56,7 @@ class LoginFormState extends State<LoginForm> {
                         autofillHints: [AutofillHints.username],
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -74,7 +75,7 @@ class LoginFormState extends State<LoginForm> {
                         autofillHints: [AutofillHints.password],
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -104,7 +105,8 @@ class LoginFormState extends State<LoginForm> {
                             child: CupertinoButton(
                               color: Colors.blue[400],
                               onPressed: () {
-                                print("hello");
+                                Navigator.pushNamed(context, "/profileView");
+                                // print("hello");
                               },
                               child: Text(
                                 "Log In",

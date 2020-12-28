@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instacopy/LoginForm.dart';
 import 'package:instacopy/PostView.dart';
+import 'package:instacopy/ProfileView.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return CupertinoApp(
       title: "Instacopy",
       home: Navigator(
@@ -25,6 +27,13 @@ class MyApp extends StatelessWidget {
             CupertinoPage(key: ValueKey("PostView"), child: PostView())
           ]),
     );
+=======
+    return CupertinoApp(routes: {
+      "/": (context) => LoginForm(),
+      "/postView": (context) => PostView(),
+      "/profileView": (context) => ProfileView()
+    }, title: "Instacopy");
+>>>>>>> 7a0ef250b4e6a35f5c421bc756965bb99cec3ccc
   }
 }
 
