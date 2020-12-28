@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
             return true;
           },
           pages: [
-            CupertinoPage(key: ValueKey("LoginForm"), child: LoginForm()),
-            // CupertinoPage(key: ValueKey("PostView"), child: PostView())
+            // CupertinoPage(key: ValueKey("LoginForm"), child: LoginForm()),
+            CupertinoPage(key: ValueKey("PostView"), child: PostView())
           ]),
     );
   }
