@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.19.1
+  modal_bottom_sheet: ^1.0.0+1
   http: ^0.12.2
 
 
