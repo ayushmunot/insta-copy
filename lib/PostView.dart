@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:instacopy/PostsList.dart';
 
 class PostView extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class PostViewState extends State<PostView> {
       child: Container(
         // alignment: ,
         color: Colors.black,
+        child: PostsList(),
       ),
       navigationBar: CupertinoNavigationBar(
           backgroundColor: Colors.black,
@@ -20,7 +22,7 @@ class PostViewState extends State<PostView> {
             image: AssetImage('assets/insta_logo(1).png'),
             width: MediaQuery.of(context).size.width * 0.45,
             // fit: BoxFit.fitWidth,
-            height: 20,
+            // height: 20,
           ),
           trailing: Container(
               // alignment: Alignment.centerRight,

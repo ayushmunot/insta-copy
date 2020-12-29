@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instacopy/LoginForm.dart';
 import 'package:instacopy/PostView.dart';
 import 'package:instacopy/ProfileView.dart';
+import 'package:instacopy/PostsList.dart';
 
 void main() {
   runApp(MyApp());
