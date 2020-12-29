@@ -2,6 +2,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instacopy/SettingsModal.dart';
+import 'package:instacopy/CreateButtonModal.dart';
+
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:flutter/material.dart';
 
@@ -57,7 +61,14 @@ class ProfileViewState extends State<ProfileView> {
                           color: Colors.white,
                         ),
                         onPressed: () {
-                          print("pressed plus button");
+                          showCupertinoModalBottomSheet(
+                              enableDrag: true,
+                              bounce: true,
+                              expand: false,
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => CreateButtonModal());
+                          print("pressed create button");
                         }),
                     CupertinoButton(
                         padding: EdgeInsets.zero,
@@ -66,6 +77,13 @@ class ProfileViewState extends State<ProfileView> {
                           color: Colors.white,
                         ),
                         onPressed: () {
+                          showCupertinoModalBottomSheet(
+                              enableDrag: true,
+                              bounce: true,
+                              expand: false,
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => SettingsModal());
                           print("pressed setting button");
                         })
                   ],
