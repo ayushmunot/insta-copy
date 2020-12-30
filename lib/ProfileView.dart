@@ -13,8 +13,13 @@ class ProfileView extends StatefulWidget {
   ProfileViewState createState() => ProfileViewState();
 }
 
+Future<void> _getData() async {
+  print("refresh triggered");
+}
+
 class ProfileViewState extends State<ProfileView> {
   bool pressedUsernameModal = false;
+  bool gridActive = true;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -94,10 +99,14 @@ class ProfileViewState extends State<ProfileView> {
                 color: Colors.black,
                 child: CustomScrollView(
                   slivers: [
+                    CupertinoSliverRefreshControl(
+                      onRefresh: _getData,
+                    ),
                     SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
                         return Card(
-                          color: Color.fromARGB(255, 18, 18, 18),
+                          margin: EdgeInsets.zero,
+                          color: Colors.black,
                           child: Column(
                             children: [
                               Row(
@@ -135,19 +144,76 @@ class ProfileViewState extends State<ProfileView> {
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.only(left: 15.0),
+                                    // alignment: Alignment.,
+                                    padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                     child: Row(
                                       children: [
-                                        Text(
-                                          "0",
-                                          style: TextStyle(color: Colors.white),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.08),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Text(
+                                                "Post",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                        Text("115",
-                                            style:
-                                                TextStyle(color: Colors.white)),
-                                        Text("95",
-                                            style:
-                                                TextStyle(color: Colors.white))
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.08),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Text(
+                                                "Followers",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.08),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Text(
+                                                "Following",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     ),
                                   )
@@ -194,12 +260,75 @@ class ProfileViewState extends State<ProfileView> {
                     SliverStickyHeader(
                       header: Container(
                         child: Container(
-                          color: Color.fromARGB(255, 18, 18, 18),
+                          color: Colors.black,
                           child: Padding(
                             padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              "hellow",
-                              style: TextStyle(color: Colors.white),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        if (!gridActive) {
+                                          gridActive = !gridActive;
+                                        }
+                                      });
+                                    },
+                                    child: Container(
+                                      // color: Colors.red,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: gridActive == true
+                                                      ? Colors.white
+                                                      : Colors.transparent,
+                                                  width: gridActive == true
+                                                      ? 1.0
+                                                      : 0.0))),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(bottom: 5.0),
+                                        child: Icon(
+                                          CupertinoIcons.circle_grid_3x3,
+                                          color: gridActive == true
+                                              ? Colors.white
+                                              : Colors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            if (gridActive) {
+                                              gridActive = !gridActive;
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: gridActive == true
+                                                          ? Colors.transparent
+                                                          : Colors.white,
+                                                      width: gridActive == true
+                                                          ? 0.0
+                                                          : 1.0))),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.only(bottom: 5.0),
+                                            child: Icon(
+                                              CupertinoIcons.person,
+                                              color: gridActive == true
+                                                  ? Colors.grey
+                                                  : Colors.white,
+                                            ),
+                                          ),
+                                        )))
+                              ],
                             ),
                           ),
                         ),
@@ -210,7 +339,7 @@ class ProfileViewState extends State<ProfileView> {
                             "$index",
                             style: TextStyle(color: Colors.white),
                           );
-                        }, childCount: 40),
+                        }, childCount: 50),
                       ),
                     ),
                   ],
