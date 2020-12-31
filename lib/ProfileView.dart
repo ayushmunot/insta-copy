@@ -17,9 +17,18 @@ Future<void> _getData() async {
   print("refresh triggered");
 }
 
+PageController pageController = PageController(
+  initialPage: 0,
+  keepPage: true,
+);
+
+ScrollController scrollController =
+    ScrollController(initialScrollOffset: 300, keepScrollOffset: true);
+
 class ProfileViewState extends State<ProfileView> {
   bool pressedUsernameModal = false;
   bool gridActive = true;
+  bool buttonTapped = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -96,8 +105,11 @@ class ProfileViewState extends State<ProfileView> {
                 ),
               ),
               child: Container(
+                height: MediaQuery.of(context).size.height * 2,
                 color: Colors.black,
                 child: CustomScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  controller: scrollController,
                   slivers: [
                     CupertinoSliverRefreshControl(
                       onRefresh: _getData,
@@ -271,7 +283,12 @@ class ProfileViewState extends State<ProfileView> {
                                     onTap: () {
                                       setState(() {
                                         if (!gridActive) {
+                                          buttonTapped = true;
                                           gridActive = !gridActive;
+                                          pageController.animateToPage(0,
+                                              duration:
+                                                  Duration(milliseconds: 200),
+                                              curve: Curves.fastOutSlowIn);
                                         }
                                       });
                                     },
@@ -303,7 +320,12 @@ class ProfileViewState extends State<ProfileView> {
                                         onTap: () {
                                           setState(() {
                                             if (gridActive) {
+                                              buttonTapped = true;
                                               gridActive = !gridActive;
+                                              pageController.animateToPage(1,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                  curve: Curves.fastOutSlowIn);
                                             }
                                           });
                                         },
@@ -333,13 +355,71 @@ class ProfileViewState extends State<ProfileView> {
                           ),
                         ),
                       ),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          return Text(
-                            "$index",
-                            style: TextStyle(color: Colors.white),
-                          );
-                        }, childCount: 50),
+                      sliver: SliverToBoxAdapter(
+                        child: Container(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            width: MediaQuery.of(context).size.width,
+                            child: PageView(
+                              controller: pageController,
+                              onPageChanged: (page) {
+                                if (!buttonTapped) {
+                                  setState(() {
+                                    gridActive = !gridActive;
+                                  });
+                                } else {
+                                  buttonTapped = false;
+                                }
+                              },
+                              children: [
+                                Container(
+                                  color: Colors.red,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: GridView.count(
+                                    crossAxisCount: 3,
+                                    children: List.generate(20, (index) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black,
+                                                width: 0.5)),
+                                        child: Center(
+                                          child: Text(
+                                            'Item $index',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                ),
+                                Container(
+                                  color: Colors.green,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: GridView.count(
+                                    crossAxisCount: 3,
+                                    children: List.generate(20, (index) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black,
+                                                width: 0.5)),
+                                        child: Center(
+                                          child: Text(
+                                            'Item $index',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                )
+                              ],
+                              scrollDirection: Axis.horizontal,
+                            )),
                       ),
                     ),
                   ],
